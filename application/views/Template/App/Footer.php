@@ -105,9 +105,7 @@
                         $('body').removeClass('modal-open');
                     }, 700);
 
-                    var tujuan = window.location.href;
-
-                    sweet('Error', 'An error occurred while processing your request. Please try again.', 'error', '', '', 0, 'center', tujuan)
+                    sweet('Error', 'An error occurred while processing your request. Please try again.', 'error', 'OK', '', 1, 'center', '')
                 }
             })
         }

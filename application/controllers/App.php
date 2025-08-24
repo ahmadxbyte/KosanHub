@@ -96,7 +96,7 @@ class App extends CI_Controller
             echo json_encode([
                 'title'     => 'Validasi',
                 'msg'       => validation_errors(),
-                'tipe'      => 'danger',
+                'tipe'      => 'error',
                 'tujuan'    => 'App/regist',
                 'param'     => 1
             ]);  // berikan parameter gagal validasi
@@ -160,7 +160,7 @@ class App extends CI_Controller
             echo json_encode([
                 'title'     => 'Pendaftaran',
                 'msg'       => 'Email sudah terdaftar',
-                'tipe'      => 'danger',
+                'tipe'      => 'info',
                 'tujuan'    => 'App/regist'
             ]);  // berikan parameter gagal pendaftaran, email sudah terdaftar
 
@@ -182,10 +182,91 @@ class App extends CI_Controller
             echo json_encode([
                 'title'     => 'Pendaftaran',
                 'msg'       => 'Gagal diproses',
-                'tipe'      => 'danger',
+                'tipe'      => 'warning',
                 'tujuan'    => 'App/regist',
                 'param'     => 0
             ]); // berikan parameter gagal terdaftar
+        }
+    }
+
+    /**
+     * Login progress
+     * */
+    public function loginProses()
+    {
+        // Validate required fields
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
+            'required'      => 'Email wajib diisi',
+            'valid_email'   => 'Format email tidak valid',
+        ]);
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[4]', [
+            'required'      => 'Sandi wajib diisi',
+            'min_length'    => 'Sandi minimal 4 karakter'
+        ]);
+
+        if ($this->form_validation->run() == FALSE) { // jika validasi gagal
+            echo json_encode([
+                'title'     => 'Validasi',
+                'msg'       => validation_errors(),
+                'tipe'      => 'error',
+                'tujuan'    => 'App/regist',
+                'param'     => 1
+            ]);  // berikan parameter gagal validasi
+            return;
+        }
+
+        // lakukan pengecekan user melalui email
+        $user = getData('user', ['email' => $this->input->post('email', TRUE)]);
+
+        if ($user) { // jika user ada
+            // lakukan pengecekan password
+            if (password_verify($this->input->post('password', TRUE), $user['password'])) { // Check if input password matches stored hash
+                // buat tampungan data yang diambil dari table user
+                $data = [
+                    'email'     => $user['email'],
+                    'nama'      => $user['nama'],
+                    'nohp'      => $user['nohp'],
+                    'alamat'    => $user['alamat'],
+                    'tmpLahir'  => $user['tmpLahir'],
+                    'tglLahir'  => $user['tglLahir'],
+                    'gambar'    => $user['gambar'],
+                    'gender'    => $user['gender'],
+                    'kodeRole'  => $user['kodeRole'],
+                ];
+
+                // set kedalam session
+                $this->session->set_userdata($data);
+
+                // berikan feedback
+                echo json_encode([
+                    'title'     => 'Masuk sistem',
+                    'msg'       => 'Proses berhasil',
+                    'tipe'      => 'success',
+                    'tujuan'    => 'Home',
+                    'param'     => 0
+                ]);  // berikan parameter berhasil login
+
+                // simpan juga ke localStorage
+                // echo "<script>
+                //     localStorage.setItem('userData', '" . json_encode($data) . "');
+                // </script>";
+            } else { // jika password berbeda
+                echo json_encode([
+                    'title'     => 'Masuk sistem',
+                    'msg'       => 'Proses gagal, password tidak sesuai',
+                    'tipe'      => 'warning',
+                    'tujuan'    => 'App',
+                    'param'     => 0
+                ]);  // berikan parameter salah password
+            }
+        } else { // jika email tidak ada di table user
+            echo json_encode([
+                'title'     => 'Masuk sistem',
+                'msg'       => 'Email belum terdaftar, silahkan daftarkan terlebih dahulu',
+                'tipe'      => 'info',
+                'tujuan'    => 'App/regist',
+                'param'     => 0
+            ]); // berikan parameter email belum terdaftar
         }
     }
 }

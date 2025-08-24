@@ -24,5 +24,5 @@ function getData($table, $where)
     $CI->db->select('*');
     $CI->db->from($table);
     $CI->db->where($where);
-    return $CI->db->get();
+    return $CI->db->get()->row_array();
 }

@@ -49,3 +49,31 @@
         </div>
     </div>
 </form>
+
+<script>
+    // fungsi untuk memproses masuk
+    function masukProses() {
+        var email = $('#email').val() // variable id email
+        var password = $('#password').val() // variable id passowrd
+
+        if (email == '') { // jika email kosong
+            var msg = '<span class="text-danger fw-bold">Email</span>' // bariable msg
+            var msg2 = 'Tidak boleh kosong!' // bariable msg2
+
+            Toast(msg, msg2) // jalankan funstion Toast dengan 2 parameter (msg, msg2)
+
+            return
+        }
+
+        if (password == '') { // jika password kosong
+            var msg = '<span class="text-danger fw-bold">Sandi</span>' // bariable msg
+            var msg2 = 'Tidak boleh kosong!' // bariable msg2
+
+            Toast(msg, msg2) // jalankan funstion Toast dengan 2 parameter (msg, msg2)
+
+            return
+        }
+
+        send_post('<?= site_url("App/loginProses") ?>', $('#formLogin'))
+    }
+</script>
