@@ -16,6 +16,7 @@ class App extends CI_Controller
             'nama'              =>  _webSetting()->nama,
             'alamat'            =>  _webSetting()->alamat,
             'logo'              =>  _webSetting()->logo,
+            'favicon'           =>  _webSetting()->favicon,
             'loading'           =>  _webSetting()->loading,
             'wa'                =>  _webSetting()->wa,
             'instagram'         =>  _webSetting()->instagram,
@@ -37,6 +38,21 @@ class App extends CI_Controller
 
         $this->load->view('Template/App/Header', $param);
         $this->load->view('App/Login', $param);
+        $this->load->view('Template/App/Footer', $param);
+    }
+
+    /**
+     * Regist Page for this controller.
+     */
+    public function regist()
+    {
+        $param = [
+            $this->data,
+            'title' => 'Ayo Bergabung Sekarang',
+        ];
+
+        $this->load->view('Template/App/Header', $param);
+        $this->load->view('App/Regist', $param);
         $this->load->view('Template/App/Footer', $param);
     }
 }

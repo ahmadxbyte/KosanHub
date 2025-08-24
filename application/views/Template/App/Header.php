@@ -28,6 +28,9 @@
     <!-- Fontawesome 6.7.2 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
+    <!-- Logo -->
+    <link rel="icon" type="image/x-icon" href="<?= base_url('assets/image/web/') . $this->data['logo'] ?>">
+
     <!-- my style -->
     <style>
         .bg-transparant {
@@ -115,6 +118,13 @@
             background-color: #128C7E;
             color: white;
             transform: scale(1.1);
+        }
+
+        /* mandatory */
+        .mandatory::after {
+            content: ' *';
+            color: var(--bs-danger);
+            font-weight: bold;
         }
     </style>
 </head>
