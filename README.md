@@ -26,3 +26,14 @@ Dibangun menggunakan **PHP 8.1** berbasis **CodeIgniter 3 (CI3)** dengan dukunga
    git clone https://github.com/ahmadxbyte/KosanHub.git
    cd KosanHub
 
+
+## 🔗 Struktur KosanHub
+KosanHub/
+├── application/
+│   ├── controllers/
+│   ├── models/
+│   ├── views/
+├── assets/
+│   ├── css/
+│   ├── js/
+│   ├── img/
