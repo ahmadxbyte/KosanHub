@@ -1,27 +1,28 @@
-# KosanHub
+# 🏠 KosanHub
 
-📌 Deskripsi Profesional Aplikasi KosanHub
+**KosanHub** adalah aplikasi web sederhana untuk pengelolaan data kos-kosan.  
+Dibangun menggunakan **PHP 8.1** berbasis **CodeIgniter 3 (CI3)** dengan dukungan berbagai komponen modern agar tetap ringan, responsif, dan mudah dikembangkan.  
 
-KosanHub adalah aplikasi web sederhana yang dirancang untuk mempermudah pengelolaan informasi kos-kosan. Dibangun dengan PHP 8.1 berbasis framework CodeIgniter 3 (CI3), aplikasi ini menawarkan performa cepat, struktur MVC yang jelas, serta kemudahan pengembangan dan pemeliharaan.
+---
 
-🔧 Teknologi dan Komponen Utama
+## ✨ Fitur Utama
+- 📱 **Responsive UI** dengan [Bootstrap 5.3](https://getbootstrap.com/)  
+- 🔍 **Dropdown pintar** menggunakan [Select2 4.1](https://select2.org/)  
+- ⚡ **Interaktivitas dinamis** dengan [jQuery 3.7](https://jquery.com/)  
+- 🎨 **Notifikasi elegan** menggunakan [SweetAlert2](https://sweetalert2.github.io/)  
+- 🔗 **Ikon modern** dari [FontAwesome 6.7](https://fontawesome.com/)  
 
-Bootstrap 5.3 → memberikan tampilan antarmuka modern, responsif, dan ramah perangkat mobile.
+---
 
-Select2 4.1 → meningkatkan pengalaman pengguna dalam memilih data dengan fitur pencarian cerdas dan dropdown yang elegan.
+## 🛠️ Teknologi
+- **Backend** : PHP 8.1 + CodeIgniter 3  
+- **Frontend** : Bootstrap 5.3, Select2 4.1, jQuery 3.7, SweetAlert2, FontAwesome 6.7  
 
-jQuery 3.7 → mempermudah manipulasi DOM, AJAX, serta interaktivitas antarmuka dengan kode yang lebih ringkas.
+---
 
-SweetAlert2 → menyajikan notifikasi interaktif, konfirmasi, serta pesan pop-up dengan desain elegan.
+## 🚀 Instalasi & Penggunaan
+1. Clone repositori ini:  
+   ```bash
+   git clone https://github.com/ahmadxbyte/KosanHub.git
+   cd KosanHub
 
-FontAwesome 6.7 → memperkaya antarmuka dengan ikon-ikon modern yang mendukung kejelasan navigasi.
-
-⚙️ Kelebihan Utama
-
-Ringan & Cepat → optimal untuk server dengan spesifikasi terbatas.
-
-User-Friendly → desain simpel dan intuitif sehingga mudah dipahami pengguna awam.
-
-Modular & Scalable → dapat dikembangkan lebih lanjut sesuai kebutuhan, misalnya sistem pembayaran, integrasi WhatsApp, atau pencarian berbasis lokasi.
-
-Dengan fondasi CI3 yang stabil dan dukungan komponen modern, KosanHub siap menjadi solusi digital sederhana namun profesional dalam mengelola data kos-kosan.
