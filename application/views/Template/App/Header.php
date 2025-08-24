@@ -31,10 +31,14 @@
     <!-- Logo -->
     <link rel="icon" type="image/x-icon" href="<?= base_url('assets/image/web/') . $this->data['logo'] ?>">
 
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/aos.css" />
+    <script src="<?= base_url() ?>assets/js/aos.js"></script>
+
     <!-- my style -->
     <style>
         .bg-transparant {
-            background-color: rgba(255, 255, 255, 0.5) !important;
+            background-color: rgba(255, 255, 255, 0.7) !important;
             backdrop-filter: blur(10px) !important;
             -webkit-backdrop-filter: blur(10px) !important;
         }
@@ -125,6 +129,23 @@
             content: ' *';
             color: var(--bs-danger);
             font-weight: bold;
+        }
+
+        /* Bouncing animation keyframes */
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .animate-bounce {
+            animation: bounce 1s infinite ease-in-out;
         }
     </style>
 </head>

@@ -48,19 +48,4 @@
             </div>
         </div>
     </div>
-
-    <div class="floating">
-        <a href="https://wa.me/<?= $this->data['wa'] ?>" target="_blank" class="floating-button">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
 </form>
-
-<!-- <div class="container mt-4">
-    <label for="pilih" class="form-label">Pilih sesuatu:</label>
-    <select id="pilih" class="form-select" style="width: 100%;">
-        <option value="1">Opsi Satu</option>
-        <option value="2">Opsi Dua</option>
-        <option value="3">Opsi Tiga</option>
-    </select>
-</div> -->
