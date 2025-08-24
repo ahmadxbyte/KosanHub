@@ -1,8 +1,10 @@
-    <div class="floating">
-        <a href="https://wa.me/<?= $this->data['wa'] ?>" target="_blank" class="floating-button">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
+    <?php if ($this->uri->segment(1) == 'App') : ?>
+        <div class="floating">
+            <a href="https://wa.me/<?= $this->data['wa'] ?>" target="_blank" class="floating-button">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    <?php endif; ?>
 
     <div class="toast-container position-fixed top-0 end-0 p-3">
         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">

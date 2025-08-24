@@ -26,3 +26,12 @@ function getData($table, $where)
     $CI->db->where($where);
     return $CI->db->get()->row_array();
 }
+
+function Result($table)
+{
+    $CI = &get_instance();
+
+    $CI->db->select('*');
+    $CI->db->from($table);
+    return $CI->db->get()->result();
+}

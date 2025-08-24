@@ -269,4 +269,22 @@ class App extends CI_Controller
             ]); // berikan parameter email belum terdaftar
         }
     }
+
+    /**
+     * Login progress
+     * */
+    public function logout()
+    {
+        // Destroy all session data
+        $this->session->sess_destroy();
+
+        // Redirect to login page with success message
+        echo json_encode([
+            'title'     => 'Keluar sistem',
+            'msg'       => 'Berhasil keluar dari sistem',
+            'tipe'      => 'success',
+            'tujuan'    => 'App',
+            'param'     => 0
+        ]);
+    }
 }
