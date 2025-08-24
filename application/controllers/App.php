@@ -3,9 +3,26 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class App extends CI_Controller
 {
+    public $data;
+
     function __construct()
     {
         parent::__construct();
+
+        /**
+         * @data merupakan isian dari pengaturan web
+         */
+        $this->data = [
+            'nama'              =>  _webSetting()->nama,
+            'alamat'            =>  _webSetting()->alamat,
+            'logo'              =>  _webSetting()->logo,
+            'loading'           =>  _webSetting()->loading,
+            'wa'                =>  _webSetting()->wa,
+            'instagram'         =>  _webSetting()->instagram,
+            'github'            =>  _webSetting()->github,
+            'email'             =>  _webSetting()->email,
+            'latar_belakang'    =>  _webSetting()->latar_belakang,
+        ];
     }
 
     /**
@@ -14,7 +31,8 @@ class App extends CI_Controller
     public function index()
     {
         $param = [
-            'title' => 'Selamat Datang'
+            $this->data,
+            'title' => 'Selamat Datang',
         ];
 
         $this->load->view('Template/App/Header', $param);

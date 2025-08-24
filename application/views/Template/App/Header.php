@@ -27,6 +27,102 @@
 
     <!-- Fontawesome 6.7.2 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- my style -->
+    <style>
+        .bg-transparant {
+            background-color: rgba(255, 255, 255, 0.5) !important;
+            backdrop-filter: blur(10px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;
+        }
+
+        /* Dynamic border classes using Bootstrap colors */
+        .border-top-primary {
+            border-top: 4px solid var(--bs-primary);
+        }
+
+        .border-top-secondary {
+            border-top: 4px solid var(--bs-secondary);
+        }
+
+        .border-top-success {
+            border-top: 4px solid var(--bs-success);
+        }
+
+        .border-top-danger {
+            border-top: 4px solid var(--bs-danger);
+        }
+
+        .border-top-warning {
+            border-top: 4px solid var(--bs-warning);
+        }
+
+        .border-top-info {
+            border-top: 4px solid var(--bs-info);
+        }
+
+        .border-bottom-primary {
+            border-bottom: 4px solid var(--bs-primary);
+        }
+
+        .border-bottom-secondary {
+            border-bottom: 4px solid var(--bs-secondary);
+        }
+
+        .border-bottom-success {
+            border-bottom: 4px solid var(--bs-success);
+        }
+
+        .border-bottom-danger {
+            border-bottom: 4px solid var(--bs-danger);
+        }
+
+        .border-bottom-warning {
+            border-bottom: 4px solid var(--bs-warning);
+        }
+
+        .border-bottom-info {
+            border-bottom: 4px solid var(--bs-info);
+        }
+
+        /* floating */
+        .floating {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .floating-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .floating-button i {
+            font-size: 35px;
+        }
+
+        .floating-button:hover {
+            background-color: #128C7E;
+            color: white;
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 
 <body>
+    <!-- background -->
+    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; overflow: hidden;">
+        <img src="<?= base_url('assets/image/web/') . $this->data['latar_belakang'] ?>" style="width: 100%; height: 100%; object-fit: cover; filter: blur(10px); transform: scale(1.1);">
+    </div>
+
+    <div class="container">
