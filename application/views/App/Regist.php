@@ -15,7 +15,7 @@
                         <div class="col-md-6 col-6">
                             <div class="mb-3">
                                 <label for="email" class="form-label mandatory">Email</label>
-                                <input type="email" class="form-control" id="email" name="email">
+                                <input type="email" class="form-control" id="email" name="email" onchange="validateEmail(this.value)">
                             </div>
                         </div>
                         <div class="col-md-6 col-6">
@@ -35,7 +35,7 @@
                         <div class="col-md-6 col-6">
                             <div class="mb-3">
                                 <label for="nama" class="form-label mandatory">Nama</label>
-                                <input type="email" class="form-control" id="nama" name="nama">
+                                <input type="email" class="form-control" id="nama" name="nama" onchange="capitalizeWords(this.value, 'nama')">
                             </div>
                         </div>
                         <div class="col-md-6 col-6">
@@ -49,7 +49,7 @@
                         <div class="col-md-6 col-6">
                             <div class="mb-3">
                                 <label for="tmpLahir" class="form-label mandatory">Tempat Lahir</label>
-                                <input type="email" class="form-control" id="tmpLahir" name="tmpLahir">
+                                <input type="email" class="form-control" id="tmpLahir" name="tmpLahir" onchange="capitalizeWords(this.value, 'tmpLahir')">
                             </div>
                         </div>
                         <div class="col-md-6 col-6">
@@ -81,7 +81,7 @@
                         <div class="col-md-12 col-12">
                             <div class="mb-3">
                                 <label for="alamat" class="form-label">Alamat</label>
-                                <textarea name="alamat" id="alamat" class="form-control" rows="3"></textarea>
+                                <textarea name="alamat" id="alamat" class="form-control" rows="3" onchange="capitalizeWords(this.value, 'alamat')"></textarea>
                             </div>
                         </div>
                     </div>

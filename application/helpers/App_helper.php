@@ -10,9 +10,19 @@ function _webSetting()
     return $CI->db->get()->row();
 }
 
-function addData($data, $table)
+function addData($table, $data)
 {
     $CI = &get_instance();
 
     return $CI->db->insert($table, $data);
+}
+
+function getData($table, $where)
+{
+    $CI = &get_instance();
+
+    $CI->db->select('*');
+    $CI->db->from($table);
+    $CI->db->where($where);
+    return $CI->db->get();
 }

@@ -85,9 +85,9 @@
                     var ttl = result.title
                     var psn = result.msg
                     var tipe = result.tipe
+                    var param = result.param
                     var kfr = 'Ya'
                     var ccl = 'Tidak'
-                    var param = 0
                     var posisi = 'center'
                     var tujuan = result.tujuan
 
@@ -129,33 +129,61 @@
             }
         }
 
+        // fungsi sweetaler
         function sweet(ttl, psn, tipe, kfr, ccl, param, posisi, tujuan) {
-            if (param == 0) {
+            if (param == 0) { // jika param 0
                 Swal.fire({
                     position: posisi,
                     icon: tipe,
-                    text: ttl + ', ' + psn,
+                    html: ttl + ', ' + psn,
                     showConfirmButton: false,
                     timer: 1500
                 }).then((value) => {
                     window.location.href = '<?= site_url() ?>' + tujuan;
                 });
-            } else if (param == 1) {
+            } else if (param == 1) { // jika param 1
                 Swal.fire({
                     title: ttl,
-                    text: psn,
+                    html: psn,
                     icon: tipe,
                     confirmButtonText: kfr
                 });
-            } else {
+            } else { // selain 0 dan 1
                 Swal.fire({
                     title: ttl,
-                    text: psn,
+                    html: psn,
                     icon: tipe,
                     confirmButtonText: kfr,
                     cancelButtonText: ccl
                 });
             }
+        }
+
+        // fungsi validasi email
+        function validateEmail(email) {
+            // Regular expression pattern untuk email validation
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+            if (!emailPattern.test(email)) { // Jika email sesuai pattern
+                // tampilkan pesan
+                sweet('Invalid Email', 'Tolong masukan email yang valid', 'error', 'OK', '', 1, 'center', '')
+
+                $('#email').val('')
+
+                return false;
+            }
+
+            return true;
+        }
+
+        // fungsi untuk nama kaputal di depan
+        function capitalizeWords(nama, forid) {
+            // Replace tiap kata tanpa mengganggu spasi
+            let str = nama.replace(/\b\w+/g, function(word) {
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            });
+
+            $("#" + forid).val(str);
         }
     </script>
     </body>

@@ -61,15 +61,57 @@ class App extends CI_Controller
      * */
     public function registProses()
     {
-        $email    = $this->input->post('email');
-        $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
-        $nama     = $this->input->post('nama');
-        $nohp     = $this->input->post('nohp');
-        $tmpLahir = $this->input->post('tmpLahir');
-        $tglLahir = $this->input->post('tglLahir');
-        $gender   = $this->input->post('gender');
-        $gambar   = $this->input->post('gambar');
-        $alamat   = $this->input->post('alamat');
+        // Validate required fields
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[user.email]', [
+            'required'      => 'Email wajib diisi',
+            'valid_email'   => 'Format email tidak valid',
+            'is_unique'     => 'Email sudah terdaftar'
+        ]);
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[4]', [
+            'required'      => 'Sandi wajib diisi',
+            'min_length'    => 'Sandi minimal 4 karakter'
+        ]);
+        $this->form_validation->set_rules('nama', 'Nama', 'required|min_length[3]', [
+            'required'      => 'Nama wajib diisi',
+            'min_length'    => 'Nama minimal 3 karakter'
+        ]);
+        $this->form_validation->set_rules('nohp', 'No HP', 'required|numeric|min_length[10]|max_length[13]', [
+            'required'      => 'Nomor HP wajib diisi',
+            'numeric'       => 'Nomor HP harus berupa angka',
+            'min_length'    => 'Nomor HP minimal 10 digit',
+            'max_length'    => 'Nomor HP maksimal 13 digit'
+        ]);
+        $this->form_validation->set_rules('tmpLahir', 'Tempat Lahir', 'required', [
+            'required'      => 'Tempat lahir wajib diisi'
+        ]);
+        $this->form_validation->set_rules('tglLahir', 'Tanggal Lahir', 'required', [
+            'required'      => 'Tanggal lahir wajib diisi'
+        ]);
+        $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|in_list[1,2]', [
+            'required'      => 'Jenis kelamin wajib diisi',
+            'in_list'       => 'Pilihan jenis kelamin tidak valid'
+        ]);
+
+        if ($this->form_validation->run() == FALSE) { // jika validasi gagal
+            echo json_encode([
+                'title'     => 'Validasi',
+                'msg'       => validation_errors(),
+                'tipe'      => 'danger',
+                'tujuan'    => 'App/regist',
+                'param'     => 1
+            ]);  // berikan parameter gagal validasi
+            return;
+        }
+
+        $email    = $this->input->post('email', TRUE);
+        $password = password_hash($this->input->post('password', TRUE), PASSWORD_DEFAULT);
+        $nama     = $this->input->post('nama', TRUE);
+        $nohp     = $this->input->post('nohp', TRUE);
+        $tmpLahir = $this->input->post('tmpLahir', TRUE);
+        $tglLahir = $this->input->post('tglLahir', TRUE);
+        $gender   = $this->input->post('gender', TRUE);
+        $gambar   = $this->input->post('gambar', TRUE);
+        $alamat   = $this->input->post('alamat', TRUE);
 
         // konfigurasi gambar
         $config['upload_path']    = 'assets/image/user/'; // lokasi penyimpanan
@@ -106,17 +148,44 @@ class App extends CI_Controller
             'tglLahir'          => $tglLahir,
             'gambar'            => $gambar,
             'gender'            => $gender,
+            'aktif'             => 1,
             'waktuBergabung'    => date('Y-m-d H:i:s'),
             'kodeRole'          => 'LV99999999', // kodeRole ini merupakan kode role untuk member
         ];
 
+        // lakukan pengecekan user melalui email
+        $user = getData('user', ['email' => $email]);
+
+        if ($user) { // jika user ada
+            echo json_encode([
+                'title'     => 'Pendaftaran',
+                'msg'       => 'Email sudah terdaftar',
+                'tipe'      => 'danger',
+                'tujuan'    => 'App/regist'
+            ]);  // berikan parameter gagal pendaftaran, email sudah terdaftar
+
+            return;
+        }
+
         // tambahkan fungsi untuk menyimpan data kedalam table user melaui app_helper
-        $cek = addData($data, 'user');
+        $cek = addData('user', $data);
 
         if ($cek) { // jika $cek berjalan
-            echo json_encode(['title' => 'Pendaftaran', 'msg' => 'Berhasil diproses', 'tipe' => 'success', 'tujuan' => 'App']);  // berikan parameter 1 = berhasil terdaftar
+            echo json_encode([
+                'title'     => 'Pendaftaran',
+                'msg'       => 'Berhasil diproses',
+                'tipe'      => 'success',
+                'tujuan'    => 'App',
+                'param'     => 0
+            ]);  // berikan parameter berhasil terdaftar
         } else { // selain itu
-            echo json_encode(['title' => 'Pendaftaran', 'msg' => 'Gagal diproses', 'tipe' => 'danger', 'tujuan' => 'App/regist']); // berikan parameter 0 = gagal terdaftar
+            echo json_encode([
+                'title'     => 'Pendaftaran',
+                'msg'       => 'Gagal diproses',
+                'tipe'      => 'danger',
+                'tujuan'    => 'App/regist',
+                'param'     => 0
+            ]); // berikan parameter gagal terdaftar
         }
     }
 }
