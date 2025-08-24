@@ -28,12 +28,14 @@ Dibangun menggunakan **PHP 8.1** berbasis **CodeIgniter 3 (CI3)** dengan dukunga
 
 
 ## 🔗 Struktur KosanHub
+```
 KosanHub/
 ├── application/
-│   ├── controllers/
-│   ├── models/
-│   ├── views/
+│ ├── controllers/
+│ ├── models/
+│ ├── views/
 ├── assets/
-│   ├── css/
-│   ├── js/
-│   ├── img/
+│ ├── css/
+│ ├── js/
+│ ├── img/
+```
