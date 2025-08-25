@@ -1,4 +1,4 @@
-<form id="formPengaturan">
+<form id="formPengaturan" style="margin-top: 8vh; margin-bottom: 10vh;">
     <div class="container mt-3">
         <div class="row">
             <div class="col-md-12">
@@ -38,8 +38,14 @@
                         <div class="row">
                             <div class="col-md-6 col-12">
                                 <div class="mb-3">
-                                    <label for="smtp" class="form-label">Kode SMTP</label>
-                                    <input type="password" class="form-control" id="smtp" name="smtp" value="<?= $web['smtp'] ?>">
+                                    <label for="password" class="form-label">Kode SMTP</label>
+                                    <div class="input-group mb-3">
+                                        <input type="password" class="form-control" id="password" name="password" value="<?= $web['smtp'] ?>">
+                                        <span class="input-group-text" id="basic-addon2" onclick="cekSecure()">
+                                            <i class="fa-solid fa-eye-slash text-success" id="secure"></i>
+                                            <i class="fa-solid fa-eye text-danger" id="notsecure"></i>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">

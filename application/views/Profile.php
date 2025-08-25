@@ -1,7 +1,7 @@
-<form id="formProfile">
+<form id="formProfile" style="margin-top: 8vh; margin-bottom: 10vh;">
     <div class="container mt-3">
         <div class="row">
-            <div class="col-md-3 col-12">
+            <div class="col-md-4 col-12 mb-3">
                 <div class="card shadow bg-blur2">
                     <div class="card-body">
                         <div class="row mb-3">
@@ -42,7 +42,12 @@
                                         <tr>
                                             <th style="padding: 5px;" width="38%">Tanggal Join</th>
                                             <td style="padding: 5px;" width="5%"></td>
-                                            <td style="padding: 5px;" width="57%"><?= $profile['waktuBergabung'] ?></td>
+                                            <td style="padding: 5px;" width="57%"><?= waktuIndo($profile['waktuBergabung'], 1) ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding: 5px;" width="38%">Waktu Join</th>
+                                            <td style="padding: 5px;" width="5%"></td>
+                                            <td style="padding: 5px;" width="57%"><?= waktuIndo($profile['waktuBergabung'], 2) ?></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -51,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9 col-12">
+            <div class="col-md-8 col-12 mb-3">
                 <div class="card shadow bg-blur2">
                     <div class="card-body">
                         <input type="hidden" name="fortab" id="fortab" value="0">
@@ -151,7 +156,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="historiBayar">x</div>
+                        <div id="historiBayar">
+                            <span>Belum Tersedia</span>
+                        </div>
                     </div>
                     <div class="card-footer">
                         <div class="float-end">

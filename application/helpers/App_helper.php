@@ -88,3 +88,47 @@ function tglIndo($tgl)
 
     return "$nama_hari, $tanggal $bulan $tahun";
 }
+
+function waktuIndo($time, $param)
+{
+    $hari = array(
+        'Sunday' => 'Minggu',
+        'Monday' => 'Senin',
+        'Tuesday' => 'Selasa',
+        'Wednesday' => 'Rabu',
+        'Thursday' => 'Kamis',
+        'Friday' => 'Jumat',
+        'Saturday' => 'Sabtu'
+    );
+
+    $bulan = array(
+        1 => 'Januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember'
+    );
+
+    $datetime = new DateTime($time);
+    $tanggal = $datetime->format('d');
+    $bulan = $bulan[(int)$datetime->format('m')];
+    $tahun = $datetime->format('Y');
+    $waktu = $datetime->format('H:i:s');
+
+    $nama_hari = $hari[date('l', strtotime($time))];
+
+    if ($param == 1) {
+        $hasil = "$nama_hari, $tanggal $bulan $tahun";
+    } else {
+        $hasil = "$waktu";
+    }
+
+    return $hasil;
+}

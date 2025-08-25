@@ -90,7 +90,7 @@ class Cogs extends CI_Controller
             'required'      => 'Alamat wajib diisi',
             'min_length'    => 'Alamat minimal 3 karakter'
         ]);
-        $this->form_validation->set_rules('smtp', 'Kode SMTP', 'required|min_length[3]', [
+        $this->form_validation->set_rules('password', 'Kode SMTP', 'required|min_length[3]', [
             'required'      => 'Kode SMTP wajib diisi',
             'min_length'    => 'Kode SMTP minimal 3 karakter'
         ]);
@@ -111,7 +111,7 @@ class Cogs extends CI_Controller
         $github       = $this->input->post('github', TRUE);
         $instagram    = $this->input->post('instagram', TRUE);
         $email        = $this->input->post('email', TRUE);
-        $smtp         = $this->input->post('smtp', TRUE);
+        $smtp         = $this->input->post('password', TRUE);
         $alamat       = $this->input->post('alamat', TRUE);
 
         // konfigurasi gambar

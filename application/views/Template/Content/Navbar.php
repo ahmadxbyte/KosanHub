@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
         <a class="navbar-brand bg-blur" href="<?= site_url('Home') ?>">
             <i class="fa-solid fa-home ms-2"></i>
@@ -7,9 +7,22 @@
         <!-- <a class="navbar-brand bg-blur pr-3 pl-3" href="#">
             <?= str_replace('fa-2x', '', $this->data['uri']['icon']) . ' ' . $this->data['uri']['keterangan'] ?>
         </a> -->
-        <a class="navbar-brand bg-blur2 p-2" href="#" style="background-color: #e78815; backdrop-filter: blur(10px);">
+        <a class="navbar-brand bg-blur2 p-2 time-display" href="#" style="background-color: #e78815; backdrop-filter: blur(10px);">
             <span id="time" style="font-size: 14px;"></span>
         </a>
+
+        <style>
+            @media (max-width: 768px) {
+                .time-display {
+                    position: fixed !important;
+                    bottom: 20px !important;
+                    right: 20px !important;
+                    z-index: 1000 !important;
+                    border-radius: 10px;
+                    margin: 0 !important;
+                }
+            }
+        </style>
         <div class="float-end">
             <button type="button" class="nav-link bg-blur">
                 <a href="<?= site_url('Profile') ?>" class="text-decoration-none text-black p-1">
