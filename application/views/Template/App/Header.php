@@ -147,6 +147,22 @@
         .animate-bounce {
             animation: bounce 1s infinite ease-in-out;
         }
+
+        /* background blur */
+        .bg-blur {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 5px;
+            display: inline-block;
+            border-radius: 10px;
+        }
+
+        .bg-blur2 {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 5px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 

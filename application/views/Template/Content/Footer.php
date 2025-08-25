@@ -1,9 +1,3 @@
-<div class="floating">
-    <button type="button" class="floating-button" onclick="logout()" data-bs-toggle="tooltip" data-bs-title="Tinggalkan sistem">
-        <i class="fa-solid fa-arrow-right-from-bracket" style="font-size: 15px;"></i>
-    </button>
-</div>
-
 <div class="toast-container position-fixed top-0 end-0 p-3">
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
@@ -39,6 +33,23 @@
 
         // menyembunyikan id notsecure
         $('#notsecure').hide();
+        $('#notsecure2').hide();
+
+        // load modal
+        const loadingModalEl = document.getElementById('loadingModal');
+        const loadingModal = new bootstrap.Modal(loadingModalEl);
+        loadingModal.show(); // tampilkan modal
+
+        setTimeout(function() {
+            const modalInstance = bootstrap.Modal.getInstance(loadingModalEl);
+            if (modalInstance) {
+                modalInstance.hide(); // sembunyikan modal
+            }
+
+            // hapus backdrop dan hapus modal-open
+            $('.modal-backdrop').remove();
+            $('body').removeClass('modal-open');
+        }, 700); // berikan time out 700
     });
 
     // inisial aos animasi
@@ -60,6 +71,69 @@
     }
 
     // fungsi untuk menjalankan ajax
+    function send_postFile(url, form) {
+        const loadingModalEl = document.getElementById('loadingModal');
+        const loadingModal = new bootstrap.Modal(loadingModalEl);
+
+        var formx = form[0];
+        var data = new FormData(formx);
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            beforeSend: function() {
+                loadingModal.show();
+            },
+            success: function(result) {
+                setTimeout(function() { // jalankan selama 500
+                    const modalInstance = bootstrap.Modal.getInstance(loadingModalEl);
+                    if (modalInstance) { // jika modal ada
+                        modalInstance.hide(); // sembunyikan
+                    }
+
+                    // hapus backdrop
+                    $('.modal-backdrop').remove();
+                    $('body').removeClass('modal-open');
+
+                    // Call sweet function after success
+                    var ttl = result.title
+                    var psn = result.msg
+                    var tipe = result.tipe
+                    var param = result.param
+                    var kfr = 'Ya'
+                    var ccl = 'Tidak'
+                    var posisi = 'center'
+                    var tujuan = result.tujuan
+
+                    sweet(ttl, psn, tipe, kfr, ccl, param, posisi, tujuan)
+                }, 500);
+            },
+            error: function() {
+                setTimeout(function() { // jalankan selama 500
+                    const modalInstance = bootstrap.Modal.getInstance(loadingModalEl);
+                    if (modalInstance) { // jika modal ada
+                        modalInstance.hide(); // sembunyikan
+                    }
+
+                    // hapus backdrop
+                    $('.modal-backdrop').remove();
+                    $('body').removeClass('modal-open');
+
+                    sweet('Error', 'An error occurred while processing your request. Please try again.', 'error', 'OK', '', 1, 'center', '')
+                }, 500);
+
+            }
+        })
+    }
+
+    // fungsi untuk menjalankan ajax
     function send_post(url, form) {
         const loadingModalEl = document.getElementById('loadingModal');
         const loadingModal = new bootstrap.Modal(loadingModalEl);
@@ -73,7 +147,7 @@
                 loadingModal.show();
             },
             success: function(result) {
-                setTimeout(function() { // jalankan selama 700
+                setTimeout(function() { // jalankan selama 500
                     const modalInstance = bootstrap.Modal.getInstance(loadingModalEl);
                     if (modalInstance) { // jika modal ada
                         modalInstance.hide(); // sembunyikan
@@ -82,21 +156,21 @@
                     // hapus backdrop
                     $('.modal-backdrop').remove();
                     $('body').removeClass('modal-open');
-                }, 700);
 
-                var ttl = result.title
-                var psn = result.msg
-                var tipe = result.tipe
-                var param = result.param
-                var kfr = 'Ya'
-                var ccl = 'Tidak'
-                var posisi = 'center'
-                var tujuan = result.tujuan
+                    var ttl = result.title
+                    var psn = result.msg
+                    var tipe = result.tipe
+                    var param = result.param
+                    var kfr = 'Ya'
+                    var ccl = 'Tidak'
+                    var posisi = 'center'
+                    var tujuan = result.tujuan
 
-                sweet(ttl, psn, tipe, kfr, ccl, param, posisi, tujuan)
+                    sweet(ttl, psn, tipe, kfr, ccl, param, posisi, tujuan)
+                }, 500);
             },
             error: function() {
-                setTimeout(function() { // jalankan selama 700
+                setTimeout(function() { // jalankan selama 500
                     const modalInstance = bootstrap.Modal.getInstance(loadingModalEl);
                     if (modalInstance) { // jika modal ada
                         modalInstance.hide(); // sembunyikan
@@ -105,9 +179,10 @@
                     // hapus backdrop
                     $('.modal-backdrop').remove();
                     $('body').removeClass('modal-open');
-                }, 700);
 
-                sweet('Error', 'An error occurred while processing your request. Please try again.', 'error', 'OK', '', 1, 'center', '')
+                    sweet('Error', 'An error occurred while processing your request. Please try again.', 'error', 'OK', '', 1, 'center', '')
+                }, 500);
+
             }
         })
     }
@@ -125,7 +200,7 @@
                 loadingModal.show();
             },
             success: function(result) {
-                setTimeout(function() { // jalankan selama 700
+                setTimeout(function() { // jalankan selama 500
                     const modalInstance = bootstrap.Modal.getInstance(loadingModalEl);
                     if (modalInstance) { // jika modal ada
                         modalInstance.hide(); // sembunyikan
@@ -134,21 +209,21 @@
                     // hapus backdrop
                     $('.modal-backdrop').remove();
                     $('body').removeClass('modal-open');
-                }, 700);
 
-                var ttl = result.title
-                var psn = result.msg
-                var tipe = result.tipe
-                var param = result.param
-                var kfr = 'Ya'
-                var ccl = 'Tidak'
-                var posisi = 'center'
-                var tujuan = result.tujuan
+                    var ttl = result.title
+                    var psn = result.msg
+                    var tipe = result.tipe
+                    var param = result.param
+                    var kfr = 'Ya'
+                    var ccl = 'Tidak'
+                    var posisi = 'center'
+                    var tujuan = result.tujuan
 
-                sweet(ttl, psn, tipe, kfr, ccl, param, posisi, tujuan)
+                    sweet(ttl, psn, tipe, kfr, ccl, param, posisi, tujuan)
+                }, 500);
             },
             error: function() {
-                setTimeout(function() { // jalankan selama 700
+                setTimeout(function() { // jalankan selama 500
                     const modalInstance = bootstrap.Modal.getInstance(loadingModalEl);
                     if (modalInstance) { // jika modal ada
                         modalInstance.hide(); // sembunyikan
@@ -157,9 +232,9 @@
                     // hapus backdrop
                     $('.modal-backdrop').remove();
                     $('body').removeClass('modal-open');
-                }, 700);
 
-                sweet('Error', 'An error occurred while processing your request. Please try again.', 'error', 'OK', '', 1, 'center', '')
+                    sweet('Error', 'An error occurred while processing your request. Please try again.', 'error', 'OK', '', 1, 'center', '')
+                }, 500);
             }
         })
     }
@@ -169,6 +244,23 @@
         const passwordInput = document.getElementById('password'); // variable id password
         const secureIcon = $('#secure'); // variable id secure
         const notSecureIcon = $('#notsecure'); // variable id notsecure
+
+        if (passwordInput.type === 'password') { // jika tipenya password
+            passwordInput.type = 'text'; // ubah menjadi text
+            secureIcon.hide(); // sembunyikan icon secure
+            notSecureIcon.show(); // tampilkan icon notsecure
+        } else { // jika tipenya bukan password
+            passwordInput.type = 'password'; // ubah menjadi password
+            secureIcon.show(); // tampilkan icon secure
+            notSecureIcon.hide(); // sembunyikan icon notsecure
+        }
+    }
+
+    // fungsi untuk mengubah tipe password menjadi text dan sebaliknya
+    function cekSecure2() {
+        const passwordInput = document.getElementById('password2'); // variable id password
+        const secureIcon = $('#secure2'); // variable id secure
+        const notSecureIcon = $('#notsecure2'); // variable id notsecure
 
         if (passwordInput.type === 'password') { // jika tipenya password
             passwordInput.type = 'text'; // ubah menjadi text
@@ -256,6 +348,46 @@
     // fungsi logout
     function logout() {
         sweet('Tinggalkan Sistem', 'Yakin ingin meninggalkan sistem?', 'question', 'Ya, Tinggalkan', 'Tidak, tetap stay', 2, 'center', '<?= site_url("App/logout") ?> ')
+    }
+
+    // fungsi get url untuk redirect
+    function getUrl(url) {
+        window.location.href = '<?= site_url() ?>' + url
+    }
+
+    // waktu
+    function startClock() {
+        const el = document.getElementById('time');
+        if (!el) return;
+
+        const fmtTanggal = new Intl.DateTimeFormat('id-ID', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+
+        function pad(n) {
+            return String(n).padStart(2, '0');
+        }
+
+        function tick() {
+            const now = new Date();
+            const tanggal = fmtTanggal.format(now); // contoh: "Senin, 28 Agustus 2025"
+            // Format jam manual pakai ":" (bukan "." seperti default id-ID)
+            const jam = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+            el.textContent = `${tanggal} | ${jam}`;
+        }
+
+        tick(); // tampil pertama kali
+        setInterval(tick, 1000); // update tiap detik
+    }
+
+    // jalankan setelah DOM siap
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', startClock);
+    } else {
+        startClock();
     }
 </script>
 </body>

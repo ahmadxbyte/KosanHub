@@ -1,7 +1,7 @@
 <form id="formRegist">
     <div class="row min-vh-100 align-items-center">
         <div class="col-md-6 col-12">
-            <div class="card shadow border-top-primary border-bottom-warning p-3">
+            <div class="card shadow border-top-primary border-bottom-warning p-3 bg-blur2">
                 <div class="card-header text-center">
                     <img src="<?= base_url('assets/image/web/') . $this->data['logo'] ?>" alt="logo" class="img-fluid" style="max-width: 200px; width: 100%; height: auto; object-fit: contain;">
                 </div>

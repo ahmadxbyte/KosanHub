@@ -31,6 +31,7 @@ class Home extends CI_Controller
                 'kodeRole'          =>  $user['kodeRole'],
                 'nama'              =>  $user['nama'],
                 'latar_belakang'    =>  _webSetting()->latar_belakang,
+                'uri'               => getData('ms_menu', ['url' => $this->uri->segment(1)]),
             ];
         } else { // jika tidak ada session
             redirect('App');
@@ -45,7 +46,7 @@ class Home extends CI_Controller
         $param = [
             $this->data,
             'title' => 'Selamat Datang',
-            'menu'  => Result('ms_menu'),
+            'menu'  => getResult('ms_menu', ['kodeMenu <> ' => 'MN00000000']),
         ];
 
         $this->load->view('Template/Content/Header', $param);

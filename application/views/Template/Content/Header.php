@@ -157,6 +157,27 @@
         .grayscale-card:hover {
             filter: grayscale(0%);
         }
+
+        /* background blur */
+        .bg-blur {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 5px;
+            display: inline-block;
+            border-radius: 10px;
+        }
+
+        .bg-blur2 {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        /* kelas aktiv */
+        .active {
+            background-color: #e18315 !important;
+        }
     </style>
 </head>
 
