@@ -19,6 +19,7 @@ class M_accessRole extends CI_Model
     {
         $this->db->select($this->kolom);
         $this->db->from($this->table . ' AS m');
+        $this->db->where(['kodeMenu <>' => 'MN00000000']);
         $this->db->order_by('m.id', 'asc');
 
         $i = 0;
@@ -66,6 +67,7 @@ class M_accessRole extends CI_Model
     {
         $this->db->select($this->kolom);
         $this->db->from($this->table . ' AS m');
+        $this->db->where(['kodeMenu <>' => 'MN00000000']);
         $this->db->order_by('m.id', 'asc');
 
         return $this->db->count_all_results();

@@ -6,7 +6,7 @@
                     <div class="h3">
                         <?= $title ?>
                         <div class="float-end">
-                            <button type="button" class="btn btn-info"><i class="fa-solid fa-rotate"></i> Reload</button>
+                            <button type="button" class="btn btn-info" onclick="reloadTable()"><i class="fa-solid fa-rotate"></i> Reload</button>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,9 @@
 </div>
 
 <script>
-    $('#tableAksesRole').DataTable({
+    var table = $('#tableAksesRole')
+
+    table.DataTable({
         "destroy": true,
         "processing": true,
         "responsive": true,
@@ -69,4 +71,45 @@
             "orderable": false,
         }],
     });
+
+    // fungsi untuk mengubah akses, entah menambahkan ataupun mengapus
+    function changeAkses(kmenu, kdrole, no, nor, nmenu, nrole, idmenu) {
+        // berikan konfirmasi
+        Swal.fire({
+            title: "Kamu yakin?",
+            html: "Menu <b>" + nmenu + "</b> untuk akses <b style='color: red;'>" + nrole + "</>!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, ubah!",
+            cancelButtonText: "Tidak!"
+        }).then((result) => {
+            if (result.isConfirmed) { // jika yakin
+                // jalankan fungsi
+                send_post('<?= site_url("Access_role/changeMenu/?id_akses=") ?>' + kmenu + '&kdrole=' + kdrole + '&idmenu=' + idmenu, $('#formPengaturan'))
+                // $.ajax({
+                //     url: '<?= site_url() ?>Access_role/changeMenu/?id_akses=' + kmenu + '&kdrole=' + kdrole + '&idmenu=' + idmenu,
+                //     type: 'POST',
+                //     dataType: 'JSON',
+                //     success: function(result) { // jika fungsi berjalan dengan baik
+                //         if (result.status == 1) { // jika mendapatkan hasil 1
+                //             Swal.fire("User " + nmenu, "Berhasil diubah aksesnya!", "success").then(() => {
+                //                 reloadTable();
+                //             });
+                //         } else { // selain itu
+                //             Swal.fire("User " + nmenu, "Gagal diubah aksesnya!, silahkan dicoba kembali", "info");
+                //         }
+                //     },
+                //     error: function(result) { // jika fungsi error
+                //         error_proccess();
+                //     }
+                // });
+            } else if (result.dismiss == 'cancel') {
+                document.getElementById('krole' + no + '_' + nor).checked = false
+            } else {
+                document.getElementById('krole' + no + '_' + nor).checked = false
+            }
+        });
+    }
 </script>

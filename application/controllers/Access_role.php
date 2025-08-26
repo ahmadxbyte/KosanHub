@@ -79,9 +79,9 @@ class Access_role extends CI_Controller
             foreach ($role as $r) {
                 $menu_akses = $this->db->query("SELECT * FROM access_menu WHERE kodeRole = '$r->kodeRole' AND kodeMenu = '$rd->kodeMenu' LIMIT 1")->row();
 
-                $akses = ($menu_akses) ? $menu_akses->kodeMenu : '0';
-                $row[] = '<div class="text-center bg-table">
-                    <input type="checkbox" style="width: 30px; height: 30px;" class="form-control" id="krole' . $no . '_' . $nor . '" ' . (($akses > 0) ? 'checked' : '') . ' name="krole[]" value="' . $r->kodeRole . '" onclick="changeAkses(' . "'" . $rd->idm . "', '" . $r->kodeRole . "', '" . $no . "', '" . $nor . "', '" . $rd->keterangan . "', '" . $r->keterangan . "', '" . $rd->idm . "'" . ')">
+                $akses = ($menu_akses) ? $menu_akses->id : '0';
+                $row[] = '<div class="d-flex justify-content-center align-items-center bg-table">
+                    <input type="checkbox" style="width: 30px; height: 30px;" class="form-check-input" id="krole' . $no . '_' . $nor . '" ' . (($akses > 0) ? 'checked' : '') . ' name="krole[]" value="' . $r->kodeRole . '" onclick="changeAkses(' . "'" . $rd->kodeMenu . "', '" . $r->kodeRole . "', '" . $no . "', '" . $nor . "', '" . $rd->keterangan . "', '" . $r->keterangan . "', '" . $rd->idm . "'" . ')">
                 </div>';
                 $nor++;
             }
@@ -99,5 +99,39 @@ class Access_role extends CI_Controller
 
         // Send the output to the view
         echo json_encode($output);
+    }
+
+    // change menu
+    public function changeMenu()
+    {
+        $kdrole   = $this->input->get('kdrole');
+        $idmenu   = $this->input->get('idmenu');
+
+        $menu     = getData('ms_menu', ['id' => $idmenu]);
+        $cek_menu = getData('access_menu', ['kodeRole' => $kdrole, 'kodeMenu' => $menu['kodeMenu']]);
+
+        if ($cek_menu) {
+            $cek = delData('access_menu', ['kodeRole' => $kdrole, 'kodeMenu' => $menu['kodeMenu']]);
+        } else {
+            $cek = addData('access_menu', ['kodeAccess' => _masterKode('access menu', 10, 'AM'), 'kodeRole' => $kdrole, 'kodeMenu' => $menu['kodeMenu']]);
+        }
+
+        if ($cek) {
+            echo json_encode([
+                'title'     => 'Akses Role',
+                'msg'       => 'Data berhasil diperbarui',
+                'tipe'      => 'success',
+                'tujuan'    => 'Access_role',
+                'param'     => 0
+            ]);  // berikan parameter berhasil diupdate
+        } else {
+            echo json_encode([
+                'title'     => 'Akses Role',
+                'msg'       => 'Data gagal diperbarui',
+                'tipe'      => 'error',
+                'tujuan'    => 'Access_role',
+                'param'     => 0
+            ]);  // berikan parameter gagal diupdate
+        }
     }
 }

@@ -386,6 +386,11 @@
     } else {
         startClock();
     }
+
+    // reloading datatable
+    function reloadTable() {
+        table.DataTable().ajax.reload(null, false);
+    }
 </script>
 </body>
 

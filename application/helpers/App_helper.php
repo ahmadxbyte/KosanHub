@@ -17,6 +17,13 @@ function addData($table, $data)
     return $CI->db->insert($table, $data);
 }
 
+function delData($table, $where)
+{
+    $CI = &get_instance();
+
+    return $CI->db->delete($table, $where);
+}
+
 function getData($table, $where)
 {
     $CI = &get_instance();
