@@ -45,6 +45,15 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/aos.css" />
     <script src="<?= base_url() ?>assets/js/aos.js"></script>
 
+    <!-- DataTables -->
+    <!-- DataTables Bootstrap 5 Integration -->
+    <link href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+
     <!-- my style -->
     <style>
         .bg-transparant {
@@ -187,6 +196,22 @@
         /* kelas aktiv */
         .active {
             background-color: #e18315 !important;
+        }
+
+        /* bg for table */
+        .bg-table {
+            background: rgba(255, 255, 255, 0.5) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        /* tr td */
+        td,
+        th {
+            border: 1px solid rgba(0, 0, 0, 1) !important;
+        }
+
+        th {
+            text-align: center !important;
         }
     </style>
 </head>

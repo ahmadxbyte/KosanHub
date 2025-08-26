@@ -19,9 +19,6 @@
     </div>
 </div>
 
-<!-- Bootstrap 5.3 -->
-<script src="<?= base_url() ?>assets/js/bootstrap.bundle.min.js"></script>
-
 <!-- My script -->
 <script>
     $(document).ready(function() {

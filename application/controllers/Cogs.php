@@ -106,7 +106,7 @@ class Cogs extends CI_Controller
             return;
         }
 
-        $nama         = $this->session->userdata('nama', TRUE);
+        $nama         = $this->input->post('nama', TRUE);
         $wa           = $this->input->post('wa', TRUE);
         $github       = $this->input->post('github', TRUE);
         $instagram    = $this->input->post('instagram', TRUE);

@@ -7,7 +7,7 @@
                         <div class="card-body text-center">
                             <span style="width: 100%; font-size: clamp(24px, 5vw, 40px); height: 100%;"><?= $m->icon ?></span>
                             <br>
-                            <span style="font-size: clamp(20px, 4vw, 36px);" class="fw-bold"><?= $m->keterangan ?></span>
+                            <span style="font-size: clamp(20px, 4vw, 36px);" class="fw-bold" type="button"><?= $m->keterangan ?></span>
                         </div>
                     </div>
                 </div>

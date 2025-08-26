@@ -46,7 +46,7 @@ class Home extends CI_Controller
         $param = [
             $this->data,
             'title' => 'Selamat Datang',
-            'menu'  => getResult('ms_menu', ['kodeMenu <> ' => 'MN00000000']),
+            'menu'  => $this->db->query('SELECT * FROM ms_menu mm JOIN access_menu am USING(kodeMenu) WHERE am.kodeRole = "' . $this->data['kodeRole'] . '" AND mm.kodeMenu <> "MN00000000" ORDER BY mm.keterangan ASC')->result(),
         ];
 
         $this->load->view('Template/Content/Header', $param);
